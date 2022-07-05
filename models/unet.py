@@ -3,7 +3,9 @@
 # See https://github.com/zhixuhao/unet  
 """
 from keras.optimizers import Adam
-from keras.models import Input, Model
+from keras.models import Model
+# from keras.models import Input, Model
+from tensorflow.keras import Input
 from keras.layers.convolutional import UpSampling2D, Conv2D
 from keras.layers import MaxPooling2D, concatenate, Dropout 
 

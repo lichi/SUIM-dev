@@ -55,19 +55,19 @@ def testGenerator():
         out_img[out_img>0.5] = 1.
         out_img[out_img<=0.5] = 0.
         print ("tested: {0}".format(p))
-        # get filename
-        img_name = ntpath.basename(p).split('.')[0] + '.bmp'
-        # save individual output masks
-        ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
-        FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
-        HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
-        RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
-        WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
-        Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
-        Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
-        Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
-        Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
-        Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
+        # # get filename
+        # img_name = ntpath.basename(p).split('.')[0] + '.bmp'
+        # # save individual output masks
+        # ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
+        # FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
+        # HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
+        # RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
+        # WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
+        # Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
+        # Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
+        # Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
+        # Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
+        # Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
 
 # test images
 testGenerator()
