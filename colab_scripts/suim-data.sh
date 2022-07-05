@@ -2,8 +2,9 @@
 pip install --upgrade --no-cache-dir gdown
 
 cd /content/
-echo "===> Creating ckpt/saved folder..."
-mkdir DATA/SUIM
+echo "===> Creating folders..."
+mkdir /content/DATA
+mkdir /content/DATA/SUIM
 
 echo "===> Downloading SUIM train_val"
 id="1ZXf4Vu1PjR2uDzr-kQQrj7X21B-EetIz"
