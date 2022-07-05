@@ -133,7 +133,7 @@ def trainDataGenerator(batch_size, train_path, image_folder, mask_folder, aug_di
         yield (img, mask_indiv)
 
 
-def getPaths(data_dir):
+def getPaths(root, data_dir):
     # read image files from directory
     exts = ['*.png','*.PNG','*.jpg','*.JPG', '*.JPEG', '*.bmp']
     image_paths = []
@@ -141,7 +141,7 @@ def getPaths(data_dir):
         for d, s, fList in os.walk(data_dir):
             for filename in fList:
                 if (fnmatch.fnmatch(filename, pattern)):
-                    fname_ = os.path.join(d,filename)
+                    fname_ = os.path.join(root,d,filename)
                     image_paths.append(fname_)
     return image_paths
 

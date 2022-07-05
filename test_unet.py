@@ -12,10 +12,10 @@ from os.path import join, exists
 # local libs
 from models.unet import UNet0
 from utils.data_utils import getPaths
-
+HOME_COLAB='/content/SUIM-dev'
 ## experiment directories
 #test_dir = "/mnt/data1/ImageSeg/suim/TEST/images/"
-test_dir = "data/test/images/"
+test_dir = os.path.join(HOME_COLAB, "data/test/images/")
 
 ## sample and ckpt dir
 samples_dir = "data/test/output/"
@@ -36,7 +36,7 @@ im_res_ = (320, 240, 3)
 ckpt_name = "unet_rgb5.hdf5"
 model = UNet0(input_size=(im_res_[1], im_res_[0], 3), no_of_class=5)
 print (model.summary())
-model.load_weights(join("ckpt/saved/", ckpt_name))
+model.load_weights(join(HOME_COLAB,"ckpt/saved/", ckpt_name))
 
 
 im_h, im_w = im_res_[1], im_res_[0]
@@ -44,7 +44,7 @@ def testGenerator():
     # test all images in the directory
     assert exists(test_dir), "local image path doesnt exist"
     imgs = []
-    for p in getPaths(test_dir):
+    for p in getPaths(HOME_COLAB, test_dir):
         # read and scale inputs
         img = Image.open(p).resize((im_w, im_h))
         img = np.array(img)/255.

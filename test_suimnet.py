@@ -12,10 +12,10 @@ from os.path import join, exists
 # local libs
 from models.suim_net import SUIM_Net
 from utils.data_utils import getPaths
-
+HOME_COLAB='/content/SUIM-dev'
 ## experiment directories
 #test_dir = "/mnt/data1/ImageSeg/suim/TEST/images/"
-test_dir = "data/test/images/"
+test_dir = os.path.join(HOME_COLAB, "data/test/images/")
 
 ## sample and ckpt dir
 samples_dir = "data/test/output/"
@@ -42,7 +42,7 @@ else:
 suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=5)
 model = suimnet.model
 print (model.summary())
-model.load_weights(join("ckpt/saved/", ckpt_name))
+model.load_weights(join(HOME_COLAB, "ckpt/saved/", ckpt_name))
 
 
 im_h, im_w = im_res_[1], im_res_[0]
@@ -50,7 +50,7 @@ def testGenerator():
     # test all images in the directory
     assert exists(test_dir), "local image path doesnt exist"
     imgs = []
-    for p in getPaths(test_dir):
+    for p in getPaths(HOME_COLAB, test_dir):
         # read and scale inputs
         img = Image.open(p).resize((im_w, im_h))
         img = np.array(img)/255.
@@ -61,19 +61,19 @@ def testGenerator():
         out_img[out_img>0.5] = 1.
         out_img[out_img<=0.5] = 0.
         print ("tested: {0}".format(p))
-        # get filename
-        img_name = ntpath.basename(p).split('.')[0] + '.bmp'
-        # save individual output masks
-        ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
-        FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
-        HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
-        RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
-        WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
-        Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
-        Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
-        Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
-        Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
-        Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
+        # # get filename
+        # img_name = ntpath.basename(p).split('.')[0] + '.bmp'
+        # # save individual output masks
+        # ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
+        # FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
+        # HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
+        # RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
+        # WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
+        # Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
+        # Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
+        # Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
+        # Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
+        # Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
 
 # test images
 testGenerator()

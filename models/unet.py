@@ -2,7 +2,8 @@
 # Standard UNet model
 # See https://github.com/zhixuhao/unet  
 """
-from keras.optimizers import Adam
+from keras.optimizers import adam_v2
+# from keras.optimizers import Adam
 from keras.models import Model
 # from keras.models import Input, Model
 from tensorflow.keras import Input
@@ -52,8 +53,9 @@ def UNet0(input_size = (256, 256, 3), no_of_class = 3):
     conv9 = Conv2D(3, 3, activation = 'relu', padding = 'same', kernel_initializer = 'he_normal')(conv9)
     conv10 = Conv2D(no_of_class, 3, padding = 'same', activation = 'sigmoid')(conv9)
 
-    model = Model(input = inputs, output = conv10)
-    model.compile(optimizer = Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])    
+    # model = Model(input = inputs, output = conv10)
+    model = Model(inputs, conv10)
+    model.compile(optimizer = adam_v2.Adam(lr = 1e-4), loss = 'binary_crossentropy', metrics = ['accuracy'])    
     model.summary()
 
 

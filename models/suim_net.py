@@ -3,11 +3,13 @@
 # Paper: https://arxiv.org/pdf/2004.01241.pdf  
 """
 import tensorflow as tf
-from keras.models import Input, Model
+from tensorflow.keras import Input
+from keras.models import Model
 from keras.layers.convolutional import UpSampling2D, Conv2D
 from keras.layers import BatchNormalization, Activation, MaxPooling2D
 from keras.layers import add, Lambda, Concatenate, ZeroPadding2D
-from keras.optimizers import Adam, SGD
+# from keras.optimizers import Adam, SGD
+from keras.optimizers import adam_v2
 from keras.applications.vgg16 import VGG16
 
 
@@ -128,12 +130,12 @@ class SUIM_Net():
         self.img_shape = (im_res[1], im_res[0], 3)
         if base=='RSB':
             self.model = self.get_model_RSB(n_classes)
-            self.model.compile(optimizer = Adam(lr = self.lr0), 
+            self.model.compile(optimizer = adam_v2.Adam(lr = self.lr0), 
                                loss = 'binary_crossentropy', 
                                metrics = ['accuracy'])
         elif base=='VGG': 
             self.model = self.get_model_VGG16(n_classes)
-            self.model.compile(optimizer = Adam(lr = self.lr0), 
+            self.model.compile(optimizer = adam_v2.Adam(lr = self.lr0), 
                                loss = 'binary_crossentropy', 
                                metrics = ['accuracy'])
 

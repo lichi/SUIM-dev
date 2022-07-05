@@ -10,13 +10,14 @@ from keras import callbacks
 # local libs
 from models.suim_net import SUIM_Net
 from utils.data_utils import trainDataGenerator
+HOME_COLAB='/content/SUIM-dev'
 
 ## dataset directory
 dataset_name = "suim"
-train_dir = "/mnt/data1/ImageSeg/suim/train_val/"
+train_dir = os.path.join(HOME_COLAB, "/mnt/data1/ImageSeg/suim/train_val/")
 
 ## ckpt directory
-ckpt_dir = "ckpt/"
+ckpt_dir = os.path.join(HOME_COLAB, "ckpt/")
 base_ = 'VGG' # or 'RSB'
 if base_=='RSB':
     im_res_ = (320, 240, 3) 
@@ -35,7 +36,8 @@ print (model.summary())
 #model.load_weights(join("ckpt/saved/", "***.hdf5"))
 
 
-batch_size = 8
+# batch_size = 8
+batch_size = 1
 num_epochs = 50
 # setup data generator
 data_gen_args = dict(rotation_range=0.2,
@@ -62,9 +64,25 @@ train_gen = trainDataGenerator(batch_size, # batch_size
                               mask_color_mode="rgb",
                               target_size = (im_res_[1], im_res_[0]))
 
+import matplotlib.pyplot as plt
+import numpy as np
+fig, ax = plt.subplots(nrows=1, ncols=4, figsize=(15,15))
+
+for i in range(4):
+
+  # convert to unsigned integers for plotting
+  image = next(train_gen)[0].astype('uint8')
+
+  # changing size from (1, 200, 200, 3) to (200, 200, 3) for plotting the image
+  image = np.squeeze(image)
+
+  # plot raw pixel data
+  ax[i].imshow(image)
+  ax[i].axis('off')
+
 ## fit model
-model.fit_generator(train_gen, 
-                    steps_per_epoch = 5000,
-                    epochs = num_epochs,
-                    callbacks = [model_checkpoint])
+# model.fit_generator(train_gen, 
+#                     steps_per_epoch = 5000,
+#                     epochs = num_epochs,
+#                     callbacks = [model_checkpoint])
 
