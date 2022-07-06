@@ -72,22 +72,33 @@ print('tensor 1 size: ', test_sample[1].shape)
 
 import matplotlib.pyplot as plt
 import numpy as np
-fig, ax = plt.subplots(nrows=1, ncols=4, figsize=(15,15))
+# fig, ax = plt.subplots(nrows=1, ncols=4, figsize=(15,15))
+# for i in range(4):
+#   # convert to unsigned integers for plotting
+#   # image = next(train_gen)[0].astype('uint8')
+#   data = next(train_gen)[0]
+#   image = data[0]
+#   mask = data[1]
+#   # changing size from (1, 200, 200, 3) to (200, 200, 3) for plotting the image
+#   image = np.squeeze(image)
+#   # plot raw pixel data
+#   ax[i].imshow(image)
+#   ax[i].axis('off')
+# plt.show()
 
-for i in range(4):
-  # convert to unsigned integers for plotting
-  # image = next(train_gen)[0].astype('uint8')
-  image = next(train_gen)[0]
-  # changing size from (1, 200, 200, 3) to (200, 200, 3) for plotting the image
-  image = np.squeeze(image)
-  # plot raw pixel data
-  ax[i].imshow(image)
-  ax[i].axis('off')
-plt.show()
+x,y = next(train_gen)
+for i in range(0,3):
+    image = x[i,:,:,0]
+    mask = np.argmax(y[i], axis=2)
+    plt.subplot(1,2,1)
+    plt.imshow(image)
+    plt.subplot(1,2,2)
+    plt.imshow(mask, cmap='gray')
+    plt.show()
 
 # fit model
-model.fit(train_gen, 
-                    steps_per_epoch = 5000,
-                    epochs = num_epochs,
-                    callbacks = [model_checkpoint])
+# model.fit(train_gen, 
+#                     steps_per_epoch = 5000,
+#                     epochs = num_epochs,
+#                     callbacks = [model_checkpoint])
 
