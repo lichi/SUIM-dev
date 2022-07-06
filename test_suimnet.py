@@ -57,6 +57,7 @@ def testGenerator():
         img = np.expand_dims(img, axis=0)
         # inference
         out_img = model.predict(img)
+        print('Out_img size: ', out_img.shape)
         # thresholding
         out_img[out_img>0.5] = 1.
         out_img[out_img<=0.5] = 0.
