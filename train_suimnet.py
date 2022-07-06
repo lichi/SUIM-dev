@@ -16,8 +16,8 @@ HOME_COLAB_DATA='/content/DATA'
 ## dataset directory
 # dataset_name = "suim"
 # train_dir = os.path.join(HOME_COLAB, "/mnt/data1/ImageSeg/suim/train_val/")
-# train_dir = os.path.join(HOME_COLAB_DATA, "SUIM/train_val/")
-train_dir = os.path.join(HOME_COLAB_DATA, "DataSet_ConchaAbanico/train_val/")
+train_dir = os.path.join(HOME_COLAB_DATA, "SUIM/train_val/")
+# train_dir = os.path.join(HOME_COLAB_DATA, "DataSet_ConchaAbanico/train_val/")
 
 ## ckpt directory
 ckpt_dir = os.path.join(HOME_COLAB_REPO, "ckpt/")
@@ -32,7 +32,8 @@ model_ckpt_name = join(ckpt_dir, ckpt_name)
 if not exists(ckpt_dir): os.makedirs(ckpt_dir)
 
 ## initialize model
-suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=5)
+n_classes = 5
+suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=n_classes)
 model = suimnet.model
 # print (model.summary())
 ## load saved model
@@ -67,34 +68,29 @@ train_gen = trainDataGenerator(batch_size, # batch_size
                               mask_color_mode="rgb",
                               target_size = (im_res_[1], im_res_[0]))
 test_sample = next(train_gen)
-print('tensor 0 size: ', test_sample[0].shape)
-print('tensor 1 size: ', test_sample[1].shape)
+print('image: ', test_sample[0].shape)
+print('mask: ', test_sample[1].shape)
 
 import matplotlib.pyplot as plt
 import numpy as np
-# fig, ax = plt.subplots(nrows=1, ncols=4, figsize=(15,15))
-# for i in range(4):
-#   # convert to unsigned integers for plotting
-#   # image = next(train_gen)[0].astype('uint8')
-#   data = next(train_gen)[0]
-#   image = data[0]
-#   mask = data[1]
-#   # changing size from (1, 200, 200, 3) to (200, 200, 3) for plotting the image
-#   image = np.squeeze(image)
-#   # plot raw pixel data
-#   ax[i].imshow(image)
-#   ax[i].axis('off')
-# plt.show()
 
-x,y = next(train_gen)
-for i in range(0,3):
-    image = x[i,:,:,0]
-    mask = np.argmax(y[i], axis=2)
-    plt.subplot(1,2,1)
-    plt.imshow(image)
-    plt.subplot(1,2,2)
-    plt.imshow(mask, cmap='gray')
-    plt.show()
+for bi in range(5):
+  fig, ax = plt.subplots(nrows=1, ncols=n_classes+1, figsize=(15,15))
+  data = next(train_gen)
+  image = data[0] #(1, 256, 320, 3)
+  masks = data[1] #(1, 256, 320, 5)
+  image = np.squeeze(image[0])
+  ax[0].imshow(image)
+  ax[0].axis('off')
+  for i in range(1, n_classes+1):
+    # mask_max = np.argmax(data[1][i], axis=2)
+    mask_i = masks[:,:,:,i-1]
+    print('mask_i: ', mask_i.shape)
+    # changing size from (1, 200, 200, 3) to (200, 200, 3) for plotting the image
+    mask_i = np.squeeze(mask_i)
+    ax[i].imshow(mask_i)
+    ax[i].axis('off')
+  plt.show()
 
 # fit model
 # model.fit(train_gen, 
