@@ -12,11 +12,12 @@ from os.path import join, exists
 # local libs
 from models.suim_net import SUIM_Net
 from utils.data_utils import getPaths
-HOME_COLAB='/content/SUIM-dev'
+# HOME_COLAB='/content/SUIM-dev'
 HOME_COLAB_DRIVE='/content/My Drive/DATA/SUIM'
 ## experiment directories
 #test_dir = "/mnt/data1/ImageSeg/suim/TEST/images/"
-test_dir = os.path.join(HOME_COLAB, "data/test/images/")
+# test_dir = os.path.join(HOME_COLAB, "data/test/images/")
+test_dir = os.path.join(HOME_COLAB_DRIVE, "data/test/images/")
 
 ## sample and ckpt dir
 #folder to save predicted segmentations
@@ -45,7 +46,7 @@ else:
 suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=5)
 model = suimnet.model
 print (model.summary())
-model.load_weights(join(HOME_COLAB, "ckpt/saved/", ckpt_name))
+model.load_weights(join(HOME_COLAB_DRIVE, "ckpt/saved/", ckpt_name))
 
 
 im_h, im_w = im_res_[1], im_res_[0]
@@ -53,7 +54,7 @@ def testGenerator():
     # test all images in the directory
     assert exists(test_dir), "local image path doesnt exist"
     imgs = []
-    for p in getPaths(HOME_COLAB, test_dir):
+    for p in getPaths(HOME_COLAB_DRIVE, test_dir):
         # read and scale inputs
         img = Image.open(p).resize((im_w, im_h))
         img = np.array(img)/255.
