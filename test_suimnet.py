@@ -13,16 +13,22 @@ from os.path import join, exists
 from models.suim_net import SUIM_Net
 from utils.data_utils import getPaths
 # HOME_COLAB='/content/SUIM-dev'
-HOME_COLAB_DRIVE='/content/drive/MyDrive/DATA/SUIM'
+
+DATASET             = 'SUIM' #['SUIM', 'DataSet_ConchasAbanico']
+HOME_COLAB_DRIVE    = '/content/drive/MyDrive/DATA/{}'.format(DATASET)
+HOME_LOCAL          = ''
+HOME_TO_USE         = HOME_LOCAL
+
+
 ## experiment directories
 #test_dir = "/mnt/data1/ImageSeg/suim/TEST/images/"
 # test_dir = os.path.join(HOME_COLAB, "data/test/images/")
-test_dir = os.path.join(HOME_COLAB_DRIVE, "data/test/images/")
+test_dir = os.path.join(HOME_TO_USE, "data/test/images/")
 
 ## sample and ckpt dir
 #folder to save predicted segmentations
 # samples_dir = "data/test/output/" 
-samples_dir = os.path.join(HOME_COLAB_DRIVE, "data/test/output/" )
+samples_dir = os.path.join(HOME_TO_USE, "data/test/output/" )
 RO_dir = samples_dir + "RO/"
 FB_dir = samples_dir + "FV/"
 WR_dir = samples_dir + "WR/"
@@ -46,7 +52,7 @@ else:
 suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=5)
 model = suimnet.model
 print (model.summary())
-model.load_weights(join(HOME_COLAB_DRIVE, "ckpt/saved/", ckpt_name))
+model.load_weights(join(HOME_TO_USE, "ckpt/saved/", ckpt_name))
 
 
 im_h, im_w = im_res_[1], im_res_[0]
@@ -54,7 +60,7 @@ def testGenerator():
     # test all images in the directory
     assert exists(test_dir), "local image path doesnt exist"
     imgs = []
-    for p in getPaths(HOME_COLAB_DRIVE, test_dir):
+    for p in getPaths(HOME_TO_USE, test_dir):
         # read and scale inputs
         img = Image.open(p).resize((im_w, im_h))
         img = np.array(img)/255.

@@ -4,6 +4,17 @@ Thanks to https://github.com/fperazzi/davis
 import numpy as np
 from skimage.morphology import binary_dilation,disk
 
+import matplotlib.pyplot as plt
+def plot_debug(npimages: list):
+    fig, ax = plt.subplots(nrows=len(npimages), ncols=len(npimages[0]))
+    for r in range(len(npimages)):
+        for c in range(len(npimages[r])):
+            image_i = npimages[r][c]
+            print('image_i: ', image_i.shape)
+            ax[r][c].imshow(image_i)
+            ax[r][c].axis('off')
+    plt.show()
+
 def db_eval_boundary(foreground_mask, gt_mask, bound_th=0.008):
     """
     Arguments:
@@ -18,9 +29,13 @@ def db_eval_boundary(foreground_mask, gt_mask, bound_th=0.008):
     bound_pix = bound_th if bound_th >= 1 else \
                 np.ceil(bound_th*np.linalg.norm(foreground_mask.shape))
 
+    # print('\nGet the pixel boundaries of both masks')
     # Get the pixel boundaries of both masks
     fg_boundary = seg2bmap(foreground_mask);
     gt_boundary = seg2bmap(gt_mask);
+
+    # print('\nfg_boundary: ', fg_boundary.shape)
+    # print('gt_boundary: ', gt_boundary.shape)
 
     fg_dil = binary_dilation(fg_boundary,disk(bound_pix))
     gt_dil = binary_dilation(gt_boundary,disk(bound_pix))
@@ -32,6 +47,12 @@ def db_eval_boundary(foreground_mask, gt_mask, bound_th=0.008):
     # Area of the intersection
     n_fg     = np.sum(fg_boundary)
     n_gt     = np.sum(gt_boundary)
+    # print('n_fg: {}, n_gt: {}'.format(n_fg, n_gt))
+
+    # plot_debug([
+    #     [gt_mask, gt_boundary, gt_dil, gt_match], 
+    #     [foreground_mask, fg_boundary, fg_dil, fg_match]
+    #     ])
 
     #% Compute precision and recall
     if n_fg == 0 and  n_gt > 0:
@@ -69,13 +90,18 @@ def seg2bmap(seg,width=None,height=None):
     seg = seg.astype(np.bool)
     seg[seg>0] = 1
 
+    # print('\nseg: ', seg.shape)
+
     assert np.atleast_3d(seg).shape[2] == 1
     width  = seg.shape[1] if width  is None else width
     height = seg.shape[0] if height is None else height
+    # print('width: {}, height: {}'.format(width, height))
 
     h,w = seg.shape[:2]
+    # print('w: {}, h: {}'.format(h, w))
     ar1 = float(width) / float(height)
     ar2 = float(w) / float(h)
+    # print('ar1: {}, ar2: {}'.format(ar1, ar2))
 
     assert not (width>w | height>h | abs(ar1-ar2)>0.01),\
                 'Can''t convert %dx%d seg to %dx%d bmap.'%(w,h,width,height)
@@ -111,6 +137,10 @@ def IoU_bin(target, prediction):
     intersection = np.logical_and(target, prediction)
     union = np.logical_or(target, prediction)
     iou_score = 1.0 * np.sum(intersection) / np.sum(union)
+    # plot_debug([
+    #     [target, intersection], 
+    #     [prediction, union]
+    #     ])
     return iou_score
 
 
