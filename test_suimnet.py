@@ -13,7 +13,7 @@ from os.path import join, exists
 from models.suim_net import SUIM_Net
 from utils.data_utils import getPaths
 # HOME_COLAB='/content/SUIM-dev'
-HOME_COLAB_DRIVE='/content/My Drive/DATA/SUIM'
+HOME_COLAB_DRIVE='/content/drive/MyDrive/DATA/SUIM'
 ## experiment directories
 #test_dir = "/mnt/data1/ImageSeg/suim/TEST/images/"
 # test_dir = os.path.join(HOME_COLAB, "data/test/images/")
