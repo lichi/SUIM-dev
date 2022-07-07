@@ -13,12 +13,15 @@ from os.path import join, exists
 from models.suim_net import SUIM_Net
 from utils.data_utils import getPaths
 HOME_COLAB='/content/SUIM-dev'
+HOME_COLAB_DRIVE='/content/My Drive/DATA/SUIM'
 ## experiment directories
 #test_dir = "/mnt/data1/ImageSeg/suim/TEST/images/"
 test_dir = os.path.join(HOME_COLAB, "data/test/images/")
 
 ## sample and ckpt dir
-samples_dir = "data/test/output/"
+#folder to save predicted segmentations
+# samples_dir = "data/test/output/" 
+samples_dir = os.path.join(HOME_COLAB_DRIVE, "data/test/output/" )
 RO_dir = samples_dir + "RO/"
 FB_dir = samples_dir + "FV/"
 WR_dir = samples_dir + "WR/"
@@ -62,19 +65,19 @@ def testGenerator():
         out_img[out_img>0.5] = 1.
         out_img[out_img<=0.5] = 0.
         print ("tested: {0}".format(p))
-        # # get filename
-        # img_name = ntpath.basename(p).split('.')[0] + '.bmp'
-        # # save individual output masks
-        # ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
-        # FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
-        # HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
-        # RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
-        # WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
-        # Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
-        # Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
-        # Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
-        # Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
-        # Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
+        # get filename
+        img_name = ntpath.basename(p).split('.')[0] + '.bmp'
+        # save individual output masks
+        ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
+        FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
+        HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
+        RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
+        WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
+        Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
+        Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
+        Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
+        Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
+        Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
 
 # test images
 testGenerator()
