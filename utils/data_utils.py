@@ -103,7 +103,7 @@ def processSUIMDataRFHW(img, mask, sal=False):
 
 def trainDataGenerator(batch_size, train_path, image_folder, mask_folder, aug_dict, image_color_mode="grayscale",
                     mask_color_mode="grayscale", target_size=(256,256), sal=False):
-    print('hereeee......')
+    # print('hereeee......')
     # data generator function for driving the training
     image_datagen = ImageDataGenerator(**aug_dict)
     image_generator = image_datagen.flow_from_directory(
@@ -131,10 +131,10 @@ def trainDataGenerator(batch_size, train_path, image_folder, mask_folder, aug_di
     
     # make pairs and return
     for (img, mask) in zip(image_generator, mask_generator):
-        print('mask: ', mask.shape)
+        # print('mask: ', mask.shape)
         img, mask_indiv = processSUIMDataRFHW(img, mask, sal)
-        print('img: ', img.shape)
-        print('mask_indiv: ', mask_indiv.shape)
+        # print('img: ', img.shape)
+        # print('mask_indiv: ', mask_indiv.shape)
         yield (img, mask_indiv)
 
 
