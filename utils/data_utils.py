@@ -103,6 +103,7 @@ def processSUIMDataRFHW(img, mask, sal=False):
 
 def trainDataGenerator(batch_size, train_path, image_folder, mask_folder, aug_dict, image_color_mode="grayscale",
                     mask_color_mode="grayscale", target_size=(256,256), sal=False):
+    print('hereeee......')
     # data generator function for driving the training
     image_datagen = ImageDataGenerator(**aug_dict)
     image_generator = image_datagen.flow_from_directory(
@@ -127,16 +128,20 @@ def trainDataGenerator(batch_size, train_path, image_folder, mask_folder, aug_di
         save_to_dir = None,
         save_prefix  = "mask",
         seed = 1)
+    
     # make pairs and return
     for (img, mask) in zip(image_generator, mask_generator):
+        print('mask: ', mask.shape)
         img, mask_indiv = processSUIMDataRFHW(img, mask, sal)
+        print('img: ', img.shape)
+        print('mask_indiv: ', mask_indiv.shape)
         yield (img, mask_indiv)
 
 
 def getPaths(root, data_dir):
     # read image files from directory
-    # exts = ['*.png','*.PNG','*.jpg','*.JPG', '*.JPEG', '*.bmp']
-    exts = ['*.PNG','*.jpg','*.JPG', '*.JPEG', '*.bmp']
+    exts = ['*.png','*.PNG','*.jpg','*.JPG', '*.JPEG', '*.bmp']
+    # exts = ['*.PNG','*.jpg','*.JPG', '*.JPEG', '*.bmp']
     image_paths = []
     for pattern in exts:
         for d, s, fList in os.walk(data_dir):
