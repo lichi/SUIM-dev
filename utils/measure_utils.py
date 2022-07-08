@@ -10,7 +10,7 @@ def plot_debug(npimages: list):
     for r in range(len(npimages)):
         for c in range(len(npimages[r])):
             image_i = npimages[r][c]
-            print('image_i: ', image_i.shape)
+            print('image_i: ', image_i.shape, r, c)
             ax[r][c].imshow(image_i)
             ax[r][c].axis('off')
     plt.show()
