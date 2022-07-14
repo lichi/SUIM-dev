@@ -29,17 +29,35 @@ test_dir = os.path.join(HOME_TO_USE, "data/test/images/")
 #folder to save predicted segmentations
 # samples_dir = "data/test/output/" 
 samples_dir = os.path.join(HOME_TO_USE, "data/test/output/" )
-RO_dir = samples_dir + "RO/"
-FB_dir = samples_dir + "FV/"
-WR_dir = samples_dir + "WR/"
-HD_dir = samples_dir + "HD/"
-RI_dir = samples_dir + "RI/" 
-if not exists(samples_dir): os.makedirs(samples_dir)
-if not exists(RO_dir): os.makedirs(RO_dir)
-if not exists(FB_dir): os.makedirs(FB_dir)
-if not exists(WR_dir): os.makedirs(WR_dir)
-if not exists(HD_dir): os.makedirs(HD_dir)
-if not exists(RI_dir): os.makedirs(RI_dir)
+if DATASET == "SUIM":
+    RO_dir = samples_dir + "RO/"
+    FB_dir = samples_dir + "FV/"
+    WR_dir = samples_dir + "WR/"
+    HD_dir = samples_dir + "HD/"
+    RI_dir = samples_dir + "RI/" 
+    if not exists(samples_dir): os.makedirs(samples_dir)
+    if not exists(RO_dir): os.makedirs(RO_dir)
+    if not exists(FB_dir): os.makedirs(FB_dir)
+    if not exists(WR_dir): os.makedirs(WR_dir)
+    if not exists(HD_dir): os.makedirs(HD_dir)
+    if not exists(RI_dir): os.makedirs(RI_dir)
+elif DATASET == "DataSet_ConchasAbanico":
+    # CAB: Concha de abanico
+    # VCA: Valva de concha de abanico (muerta)
+    # VPP: Valva de pico de pato
+    # CAR: Caracol
+    # CAN: Cangrejo
+    CAB_dir = samples_dir + "CAB/"
+    VCA_dir = samples_dir + "VCA/"
+    VPP_dir = samples_dir + "VPP/"
+    CAR_dir = samples_dir + "CAR/"
+    CAN_dir = samples_dir + "CAN/" 
+    if not exists(samples_dir): os.makedirs(samples_dir)
+    if not exists(CAB_dir): os.makedirs(CAB_dir)
+    if not exists(VCA_dir): os.makedirs(VCA_dir)
+    if not exists(VPP_dir): os.makedirs(VPP_dir)
+    if not exists(CAR_dir): os.makedirs(CAR_dir)
+    if not exists(CAN_dir): os.makedirs(CAN_dir)
 
 ## input/output shapes
 base_ = 'VGG' # or 'RSB'
@@ -75,16 +93,29 @@ def testGenerator():
         # get filename
         img_name = ntpath.basename(p).split('.')[0] + '.bmp'
         # save individual output masks
-        ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
-        FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
-        HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
-        RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
-        WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
-        Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
-        Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
-        Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
-        Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
-        Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
+        if DATASET == "SUIM":
+            ROs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
+            FVs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
+            HDs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
+            RIs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
+            WRs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
+            Image.fromarray(np.uint8(ROs*255.)).save(RO_dir+img_name)
+            Image.fromarray(np.uint8(FVs*255.)).save(FB_dir+img_name)
+            Image.fromarray(np.uint8(HDs*255.)).save(HD_dir+img_name)
+            Image.fromarray(np.uint8(RIs*255.)).save(RI_dir+img_name)
+            Image.fromarray(np.uint8(WRs*255.)).save(WR_dir+img_name)
+        elif DATASET == "DataSet_ConchasAbanico":
+            CABs = np.reshape(out_img[0,:,:,0], (im_h, im_w))
+            VCAs = np.reshape(out_img[0,:,:,1], (im_h, im_w))
+            VPPs = np.reshape(out_img[0,:,:,2], (im_h, im_w))
+            CARs = np.reshape(out_img[0,:,:,3], (im_h, im_w))
+            CANs = np.reshape(out_img[0,:,:,4], (im_h, im_w))
+            Image.fromarray(np.uint8(CABs*255.)).save(CAB_dir+img_name)
+            Image.fromarray(np.uint8(VCAs*255.)).save(VCA_dir+img_name)
+            Image.fromarray(np.uint8(VPPs*255.)).save(VPP_dir+img_name)
+            Image.fromarray(np.uint8(CARs*255.)).save(CAR_dir+img_name)
+            Image.fromarray(np.uint8(CANs*255.)).save(CAN_dir+img_name)
+            
 
 # test images
 testGenerator()
