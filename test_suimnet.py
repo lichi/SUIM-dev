@@ -14,10 +14,10 @@ from models.suim_net import SUIM_Net
 from utils.data_utils import getPaths
 # HOME_COLAB='/content/SUIM-dev'
 
-DATASET             = 'SUIM' #['SUIM', 'DataSet_ConchasAbanico']
+DATASET             = 'DataSet_ConchasAbanico' #['SUIM', 'DataSet_ConchasAbanico']
 HOME_COLAB_DRIVE    = '/content/drive/MyDrive/DATA/{}'.format(DATASET)
 HOME_LOCAL          = ''
-HOME_TO_USE         = HOME_LOCAL
+HOME_TO_USE         = HOME_COLAB_DRIVE
 
 
 ## experiment directories
@@ -51,7 +51,7 @@ else:
     ckpt_name = "suimnet_vgg5.hdf5"
 suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=5)
 model = suimnet.model
-print (model.summary())
+# print (model.summary())
 model.load_weights(join(HOME_TO_USE, "ckpt/saved/", ckpt_name))
 
 
