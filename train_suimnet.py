@@ -19,7 +19,7 @@ HOME_COLAB_TRAIN_DATA='/content/DATA'
 DATASET             = 'DataSet_ConchasAbanico' #['SUIM', 'DataSet_ConchasAbanico']
 HOME_COLAB_DRIVE    = '/content/drive/MyDrive/DATA/{}'.format(DATASET)
 HOME_LOCAL_WINDOWS  = 'E:/DATASETS_LOCAL/'
-HOME_TO_USE         = HOME_LOCAL_WINDOWS
+HOME_TO_USE         = HOME_COLAB_DRIVE
 
 
 def train_plot_debug(train_gen):
@@ -44,7 +44,7 @@ def train_plot_debug(train_gen):
 ## dataset directory
 # dataset_name = "suim"
 # train_dir = os.path.join(HOME_COLAB, "/mnt/data1/ImageSeg/suim/train_val/")
-train_dir = os.path.join(HOME_TO_USE, DATASET, "train_val/")
+train_dir = os.path.join(HOME_COLAB_TRAIN_DATA, DATASET, "train_val/")
 # train_dir = os.path.join(HOME_COLAB_DATA, "DataSet_ConchaAbanico/train_val/")
 
 ## ckpt directory
@@ -65,11 +65,11 @@ suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=n_classes)
 model = suimnet.model
 # print (model.summary())
 ## load saved model
-#model.load_weights(join("ckpt/saved/", "***.hdf5"))
+# model.load_weights(os.path.join(HOME_TO_USE, "ckpt/saved/", "suimnet_vgg.hdf5"))
 
-batch_size = 1
+batch_size = 8
 # batch_size = 1
-num_epochs = 10 #50
+num_epochs = 100 #50
 # setup data generator
 data_gen_args = dict(rotation_range=0.2,
                     width_shift_range=0.05,
@@ -102,7 +102,7 @@ print('mask: ', test_sample[1].shape)
 
 # fit model
 model.fit(train_gen, 
-                    steps_per_epoch = 17, #5000
+                    steps_per_epoch = 18, #5000
                     epochs = num_epochs,
                     callbacks = [model_checkpoint])
 

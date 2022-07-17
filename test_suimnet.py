@@ -70,7 +70,7 @@ else:
 suimnet = SUIM_Net(base=base_, im_res=im_res_, n_classes=5)
 model = suimnet.model
 # print (model.summary())
-model.load_weights(join(HOME_TO_USE, "ckpt/saved/", ckpt_name))
+model.load_weights(join(HOME_TO_USE, "ckpt/", ckpt_name))
 
 
 im_h, im_w = im_res_[1], im_res_[0]
