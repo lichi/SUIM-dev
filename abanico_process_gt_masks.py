@@ -7,27 +7,29 @@ from utils.data_utils import getPaths
 DATASET                 = 'DataSet_ConchasAbanico' #['SUIM', 'DataSet_ConchasAbanico']
 HOME_COLAB_DRIVE        = '/content/drive/MyDrive/DATA/{}'.format(DATASET)
 HOME_LOCAL              = ''
-HOME_LOCAL_DATASET_WIN  = 'E:/DATASETS_LOCAL/{}'.format(DATASET)
+HOME_LOCAL_DATASET_WIN  = 'C:/Users/David/Desktop/DATASETS/{}'.format(DATASET)
 HOME_TO_USE             = HOME_LOCAL_DATASET_WIN
 
 masks_dir = os.path.join(HOME_TO_USE, "TEST/masks/")
 masks_process_dir = os.path.join(HOME_TO_USE, "TEST/masks_process/" )
-# CA: Concha de abanico
+
+# CAB: Concha de abanico
 # VCA: Valva de concha de abanico (muerta)
 # VPP: Valva de pico de pato
-# CRC: Caracol
-# CNG: Cangrejo
-CA_dir  = masks_process_dir + "CA/"
+# CAR: Caracol
+# CAN: Cangrejo
+    
+CAB_dir = masks_process_dir + "CAB/"
 VCA_dir = masks_process_dir + "VCA/"
 VPP_dir = masks_process_dir + "VPP/"
-CRC_dir = masks_process_dir + "CRC/"
-CNG_dir = masks_process_dir + "CNG/" 
+CAR_dir = masks_process_dir + "CAR/"
+CAN_dir = masks_process_dir + "CAN/" 
 if not exists(masks_process_dir): os.makedirs(masks_process_dir)
-if not exists(CA_dir): os.makedirs(CA_dir)
+if not exists(CAB_dir): os.makedirs(CAB_dir)
 if not exists(VCA_dir): os.makedirs(VCA_dir)
 if not exists(VPP_dir): os.makedirs(VPP_dir)
-if not exists(CRC_dir): os.makedirs(CRC_dir)
-if not exists(CNG_dir): os.makedirs(CNG_dir)
+if not exists(CAR_dir): os.makedirs(CAR_dir)
+if not exists(CAN_dir): os.makedirs(CAN_dir)
 
 n_classes=6
 
@@ -90,14 +92,20 @@ for i,p in enumerate(mask_paths):
     # ax[5].imshow(mask[:,:,5])
     # ax[6].imshow(img)
     # plt.show()
+    
+    # CAB_dir
+    # VCA_dir
+    # VPP_dir
+    # CAR_dir
+    # CAN_dir
 
-    CA  = np.reshape(mask[:,:,1], (im_h, im_w))
+    CAB = np.reshape(mask[:,:,1], (im_h, im_w))
     VCA = np.reshape(mask[:,:,2], (im_h, im_w))
     VPP = np.reshape(mask[:,:,3], (im_h, im_w))
-    CRC = np.reshape(mask[:,:,4], (im_h, im_w))
-    CNG = np.reshape(mask[:,:,5], (im_h, im_w))
-    Image.fromarray(np.uint8(CA*255.)).save (CA_dir +img_name + '.bmp')
+    CAR = np.reshape(mask[:,:,4], (im_h, im_w))
+    CAN = np.reshape(mask[:,:,5], (im_h, im_w))
+    Image.fromarray(np.uint8(CAB*255.)).save(CAB_dir+img_name + '.bmp')
     Image.fromarray(np.uint8(VCA*255.)).save(VCA_dir+img_name + '.bmp')
     Image.fromarray(np.uint8(VPP*255.)).save(VPP_dir+img_name + '.bmp')
-    Image.fromarray(np.uint8(CRC*255.)).save(CRC_dir+img_name + '.bmp')
-    Image.fromarray(np.uint8(CNG*255.)).save(CNG_dir+img_name + '.bmp')
+    Image.fromarray(np.uint8(CAR*255.)).save(CAR_dir+img_name + '.bmp')
+    Image.fromarray(np.uint8(CAN*255.)).save(CAN_dir+img_name + '.bmp')
