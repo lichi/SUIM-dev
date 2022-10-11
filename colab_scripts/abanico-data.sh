@@ -18,3 +18,21 @@ mv $src ${dst}
 echo "===> Unzipping ${filename}"
 unrar x -Y "/content/DATA/DataSet_ConchasAbanico/${filename}" "/content/DATA/DataSet_ConchasAbanico"
 rm "/content/DATA/DataSet_ConchasAbanico/${filename}"
+
+#########################
+
+echo "===> Downloading..."
+id="1Hed8HHT2fp5AMZPagKexZamINm04ynis"
+gdown --id $id
+filename="images.zip"
+src="/content/${filename}"
+dst="/content/DATA/DataSet_ConchasAbanico"
+mv $src ${dst}
+
+echo "===> Downloading..."
+id="1asBQdvI7S8J0HkP1lAGWeDry0VSOtIwI"
+gdown --id $id
+filename="masks_process.zip"
+src="/content/${filename}"
+dst="/content/DATA/DataSet_ConchasAbanico"
+mv $src ${dst}
