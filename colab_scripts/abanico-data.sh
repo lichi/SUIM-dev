@@ -38,7 +38,7 @@ dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
 mv $src ${dst}
 
 echo "===> Unzipping ${filename}"
-unrar x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
+unzip x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
 rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filename}"
 
 
@@ -51,5 +51,5 @@ dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process"
 mv $src ${dst}
 
 echo "===> Unzipping ${filename}"
-unrar x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process"
+unzip x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process"
 rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process/${filename}"
