@@ -27,7 +27,7 @@ mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico
 mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data
 mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test
 mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images
-mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process
+mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process
 
 echo "===> Downloading..."
 id="1Hed8HHT2fp5AMZPagKexZamINm04ynis"
