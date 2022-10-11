@@ -51,5 +51,5 @@ dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process"
 mv $src ${dst}
 
 echo "===> Unzipping ${filename}"
-unzip -q "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process/${filename}" -q "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process"
+unzip -q "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process/${filename}" -d "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process"
 rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process/${filename}"
