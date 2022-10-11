@@ -37,6 +37,11 @@ src="/content/${filename}"
 dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
 mv $src ${dst}
 
+echo "===> Unzipping ${filename}"
+unrar x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
+rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filename}"
+
+
 echo "===> Downloading..."
 id="1asBQdvI7S8J0HkP1lAGWeDry0VSOtIwI"
 gdown --id $id
@@ -44,3 +49,7 @@ filename="masks_process.zip"
 src="/content/${filename}"
 dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process"
 mv $src ${dst}
+
+echo "===> Unzipping ${filename}"
+unrar x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process"
+rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/mask_process/${filename}"
