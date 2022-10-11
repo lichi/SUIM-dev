@@ -41,10 +41,6 @@ echo "===> Unzipping ${filename}"
 unzip -q "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filename}" -d "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
 rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filename}"
 
-echo "===> Unzipping ${filename}"
-unzip -q "/content/DATA/SUIM/${filename}" -d "/content/DATA/SUIM"
-rm "/content/DATA/SUIM/${filename}"
-
 
 echo "===> Downloading..."
 id="1asBQdvI7S8J0HkP1lAGWeDry0VSOtIwI"
