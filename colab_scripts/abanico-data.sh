@@ -12,7 +12,7 @@ id="1xrX4CoK2gCOsNJ7HjEuceiPtnbhfpugJ"
 
 
 gdown --id $id
-filename="train_val.rar"
+filename="train_val_d3.rar"
 src="/content/${filename}"
 dst="/content/DATA/DataSet_ConchasAbanico"
 mv $src ${dst}
@@ -35,7 +35,7 @@ echo "===> Downloading..."
 #id="1Hed8HHT2fp5AMZPagKexZamINm04ynis"
 id="1X9AwfK_Y3tSBDjK18-gl3o2ntZQEWNlc"
 gdown --id $id
-filename="images.zip"
+filename="images_d3.zip"
 src="/content/${filename}"
 dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
 mv $src ${dst}
@@ -49,7 +49,7 @@ echo "===> Downloading..."
 #id="1asBQdvI7S8J0HkP1lAGWeDry0VSOtIwI"
 id="1c-bO7xhGzIR0D9FfUs2uttp12nYOcgwK"
 gdown --id $id
-filename="masks_process.zip"
+filename="masks_process_d3.zip"
 src="/content/${filename}"
 dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process"
 mv $src ${dst}
