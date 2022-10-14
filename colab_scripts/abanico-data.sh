@@ -7,7 +7,9 @@ mkdir /content/DATA
 mkdir /content/DATA/DataSet_ConchasAbanico
 
 echo "===> Downloading ABANICO dataset"
-id="1qJpTORrTuCETMWg3FBJeCaCrn8IVrBDh"
+#id="1qJpTORrTuCETMWg3FBJeCaCrn8IVrBDh"
+id="19JHhbwFKA2Z1mZ-J3rfzKWTtNSbXqIhm"
+
 
 gdown --id $id
 filename="train_val.rar"
