@@ -8,7 +8,7 @@ mkdir /content/DATA/DataSet_ConchasAbanico
 
 echo "===> Downloading ABANICO dataset"
 #id="1qJpTORrTuCETMWg3FBJeCaCrn8IVrBDh"
-id="19JHhbwFKA2Z1mZ-J3rfzKWTtNSbXqIhm"
+id="1xrX4CoK2gCOsNJ7HjEuceiPtnbhfpugJ"
 
 
 gdown --id $id
