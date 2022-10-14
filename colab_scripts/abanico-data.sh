@@ -32,7 +32,8 @@ mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images
 mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process
 
 echo "===> Downloading..."
-id="1Hed8HHT2fp5AMZPagKexZamINm04ynis"
+#id="1Hed8HHT2fp5AMZPagKexZamINm04ynis"
+id="1X9AwfK_Y3tSBDjK18-gl3o2ntZQEWNlc"
 gdown --id $id
 filename="images.zip"
 src="/content/${filename}"
@@ -45,7 +46,8 @@ rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images/${filena
 
 
 echo "===> Downloading..."
-id="1asBQdvI7S8J0HkP1lAGWeDry0VSOtIwI"
+#id="1asBQdvI7S8J0HkP1lAGWeDry0VSOtIwI"
+id="1c-bO7xhGzIR0D9FfUs2uttp12nYOcgwK"
 gdown --id $id
 filename="masks_process.zip"
 src="/content/${filename}"
