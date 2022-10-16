@@ -39,7 +39,7 @@ gdown --id $id
 #filename="images.zip"
 filename="images_d3.rar"
 src="/content/${filename}"
-dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/images"
+dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test"
 mv $src ${dst}
 
 #echo "===> Unzipping ${filename}"
@@ -58,7 +58,7 @@ gdown --id $id
 filename="masks_process.zip"
 filename="masks_process_d3.rar"
 src="/content/${filename}"
-dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process"
+dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test"
 mv $src ${dst}
 
 #echo "===> Unzipping ${filename}"
@@ -66,5 +66,5 @@ mv $src ${dst}
 #rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process/${filename}"
 
 echo "===> Unzipping ${filename}"
-unrar x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process"
-rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process/${filename}"
+unrar x -Y "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/${filename}" "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test"
+rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/${filename}"
