@@ -5,10 +5,12 @@ from os.path import join, exists
 from utils.data_utils import getPaths
 
 DATASET                 = 'DataSet_ConchasAbanico' #['SUIM', 'DataSet_ConchasAbanico']
-HOME_COLAB_DRIVE        = '/content/drive/MyDrive/DATA/{}'.format(DATASET)
+HOME_COLAB_DRIVE        = '/content/drive/MyDrive/Maestria_IoT/{}'.format(DATASET)
 HOME_LOCAL              = ''
-HOME_LOCAL_DATASET_WIN  = 'C:/Users/David/Desktop/DATASETS/{}'.format(DATASET)
+#HOME_LOCAL_DATASET_WIN  = 'C:/Users/David/Desktop/DATASETS/{}'.format(DATASET)
+HOME_LOCAL_DATASET_WIN  = 'D:/DATASETS_LOCAL/{}'.format(DATASET)
 HOME_TO_USE             = HOME_LOCAL_DATASET_WIN
+
 
 masks_dir = os.path.join(HOME_TO_USE, "TEST/masks/")
 masks_process_dir = os.path.join(HOME_TO_USE, "TEST/masks_process/" )
