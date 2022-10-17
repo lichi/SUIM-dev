@@ -34,10 +34,10 @@ mkdir /content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/masks_process
 
 echo "===> Downloading..."
 #id="1Hed8HHT2fp5AMZPagKexZamINm04ynis"
-id="1X9AwfK_Y3tSBDjK18-gl3o2ntZQEWNlc"
+id="1V7IHHSw_X5PIOIdG5zCmUi9t9SlA8X2a"
 gdown --id $id
 #filename="images.zip"
-filename="images_d3.rar"
+filename="images_d3test.rar"
 src="/content/${filename}"
 dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test"
 mv $src ${dst}
@@ -53,10 +53,10 @@ rm "/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test/${filename}"
 
 echo "===> Downloading..."
 #id="1asBQdvI7S8J0HkP1lAGWeDry0VSOtIwI"
-id="1c-bO7xhGzIR0D9FfUs2uttp12nYOcgwK"
+id="1EouJgt_pYu7Xg5Iyo9NxFCpTVfJMn54L"
 gdown --id $id
 #filename="masks_process.zip"
-filename="masks_process_d3.rar"
+filename="masks_process_d3test.rar"
 src="/content/${filename}"
 dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test"
 mv $src ${dst}
