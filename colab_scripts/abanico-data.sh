@@ -56,7 +56,7 @@ echo "===> Downloading..."
 id="1EouJgt_pYu7Xg5Iyo9NxFCpTVfJMn54L"
 gdown --id $id
 #filename="masks_process.zip"
-filename="masks_process_d3test.rar"
+filename="masks_d3test.rar"
 src="/content/${filename}"
 dst="/content/drive/MyDrive/DATA/DataSet_ConchasAbanico/data/test"
 mv $src ${dst}
