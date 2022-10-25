@@ -12,8 +12,11 @@ HOME_LOCAL_DATASET_WIN  = 'D:/DATASETS_LOCAL/{}'.format(DATASET)
 HOME_TO_USE             = HOME_LOCAL_DATASET_WIN
 
 
-masks_dir = os.path.join(HOME_TO_USE, "TEST/masks/")
-masks_process_dir = os.path.join(HOME_TO_USE, "TEST/masks_process/" )
+#masks_dir = os.path.join(HOME_TO_USE, "TEST/masks/")
+#masks_process_dir = os.path.join(HOME_TO_USE, "TEST/masks_process/" )
+
+masks_dir = os.path.join(HOME_COLAB_DRIVE, "TEST/masks/")
+masks_process_dir = os.path.join(HOME_COLAB_DRIVE, "TEST/masks_process/" )
 
 # CAB: Concha de abanico
 # VCA: Valva de concha de abanico (muerta)
